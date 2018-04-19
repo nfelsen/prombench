@@ -1,5 +1,5 @@
 # prombench
-Benchmark and integration testing tool for Prometheus
+Benchmark and integration testing tool for Prometheus 2.x
 
 Prombench generates load with synthetic exporters and then queries Prometheus
 to compare what we think we sent with what we hope was stored.
@@ -23,9 +23,9 @@ part of the docs.  You can override the default Prometheus command ("prometheus"
 with a path and command-line arguments at the end of the prombench command line, after --,
 e.g.
 
-    prombench -exporters inc:20 -- ~/src/prometheus/prometheus -storage.local.memory-chunks 2097152 -storage.local.max-chunks-to-persist 1048576 
+    prombench -exporters inc:20 -- ~/src/prometheus/prometheus -storage.local.memory-chunks 2097152 -storage.local.max-chunks-to-persist 1048576
 
-Do not provide the -storage.local.retention Prometheus argument, use rather the 
+Do not provide the -storage.local.retention Prometheus argument, use rather the
 prombench -test-duration argument.  This allows the verification query to be scaled
 to how much data should still be present by the time it's run.
 

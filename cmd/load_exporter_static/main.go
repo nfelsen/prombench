@@ -10,7 +10,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/ncabatoff/prombench/loadgen"
+	"github.com/nfelsen/prombench/loadgen"
 	"github.com/prometheus/client_golang/prometheus"
 )
 

@@ -3,17 +3,18 @@ package prombench
 import (
 	"context"
 	"fmt"
-	"github.com/ncabatoff/prombench/harness"
-	"github.com/ncabatoff/prombench/loadgen"
-	api "github.com/prometheus/client_golang/api/prometheus"
-	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/common/model"
 	"log"
 	"net"
 	"os/exec"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/nfelsen/prombench/harness"
+	"github.com/nfelsen/prombench/loadgen"
+	api "github.com/prometheus/client_golang/api/prometheus"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/common/model"
 )
 
 //go:generate stringer -type=LoadExporterKind
@@ -277,13 +278,13 @@ func startExportersAdaptive(ctx context.Context, le loadgen.LoadExporter, firstP
 func getExtraArgs(cfg Config) []string {
 	extraArgs := append([]string{}, cfg.ExtraArgs...)
 	if cfg.TestRetention > 0 {
-		extraArgs = append(extraArgs, "-storage.local.retention",
+		extraArgs = append(extraArgs, "--storage.tsdb.retention",
 			fmt.Sprintf("%ds", int(cfg.TestRetention.Seconds())))
 	}
 	if len(extraArgs) > 0 {
 		prometheus.MustRegister(newExtraPrometheusArgsCollector(extraArgs, cfg.TestRetention))
 	}
-	return append(extraArgs, "-web.listen-address", cfg.PrometheusListenAddress)
+	return append(extraArgs, "--web.listen-address", cfg.PrometheusListenAddress)
 }
 
 func waitForPrometheus(ctx context.Context, instance string) bool {
