@@ -290,7 +290,7 @@ func getExtraArgs(cfg Config) []string {
 func waitForPrometheus(ctx context.Context, instance string) bool {
 	queryUrl := "http://" + instance
 	// TODO make timeout configurable
-	endTime := time.Now().Add(time.Second * 10)
+	endTime := time.Now().Add(time.Second * 60)
 	for {
 		timeLeft := endTime.Sub(time.Now())
 		if timeLeft < 0 {

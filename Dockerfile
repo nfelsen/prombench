@@ -1,4 +1,5 @@
 FROM golang AS build-env
+ENV PATH $PATH:/prom
 RUN go get github.com/nfelsen/prombench
 RUN go install github.com/nfelsen/prombench/cmd/prombench
 
