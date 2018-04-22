@@ -20,7 +20,7 @@ func main() {
 			"Address on which to expose metrics.")
 		metricsPath = flag.String("web.telemetry-path", "/metrics",
 			"Path under which to expose metrics.")
-		metricCount = flag.Int("metric-count", 100,
+		metricCount = flag.Int("metric-count", 200,
 			"how many metrics to expose per exporter")
 		labelCount = flag.Int("label-count", 100,
 			"how many labels to create per metric")

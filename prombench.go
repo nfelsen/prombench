@@ -437,13 +437,13 @@ func startExporters(le loadgen.LoadExporter, esl ExporterSpecList, firstPort int
 			var exporter loadgen.HttpExporter
 			switch exporterSpec.Exporter {
 			case ExporterInc:
-				exporter = loadgen.NewHttpExporter(loadgen.NewIncCollector(100, 100))
+				exporter = loadgen.NewHttpExporter(loadgen.NewIncCollector(200, 100))
 			case ExporterStatic:
-				exporter = loadgen.NewHttpExporter(loadgen.NewStaticCollector(100, 100))
+				exporter = loadgen.NewHttpExporter(loadgen.NewStaticCollector(200, 100))
 			case ExporterRandCyclic:
-				exporter = loadgen.NewHttpExporter(loadgen.NewRandCyclicCollector(100, 100, 100000))
+				exporter = loadgen.NewHttpExporter(loadgen.NewRandCyclicCollector(200, 100, 100000))
 			case ExporterOscillate:
-				exporter = loadgen.NewReplayHandler(loadgen.NewHttpExporter(loadgen.NewIncCollector(100, 100)))
+				exporter = loadgen.NewReplayHandler(loadgen.NewHttpExporter(loadgen.NewIncCollector(200, 100)))
 			default:
 				log.Fatalf("invalid exporter '%s'", exporterSpec.Exporter)
 			}
